@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Biome - Our Products</title>
+
+    <!-- Loads the CSS file responsible for styling the page -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- Website header with title and navigation menu -->
+<header>
+  <h1>Pure Biome</h1>
+
+  <!-- Navigation links to other pages -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<!-- Main content container -->
+<div class="container">
+  <h2>Our Products</h2>
+
+  <!-- Empty grid where products will be inserted dynamically -->
+  <div class="products-grid" id="products-container">
+  </div>
+</div>
+
+<script>
+  // Selects the container where product cards will be displayed
+  const container = document.getElementById("products-container");
+
+  // Fetches product data from the backend API
+  fetch("http://localhost:3000/api/products")
+    .then(response => response.json()) // Converts the response to JSON
+    .then(products => {
+      container.innerHTML = ""; // Clears the container before inserting products
+
+      // Loops through each product returned by the API
+      products.forEach(p => {
+        container.innerHTML += `
+          <div class="product-card">
+
+            <!-- Product image -->
+            <img src="${p.image}" alt="${p.name}">
+
+            <!-- Product name -->
+            <h3>${p.name}</h3>
+
+            <!-- Product description -->
+            <p>${p.description}</p>
+
+            <!-- Product price (converted to number to avoid errors) -->
+            <div class="price">€${Number(p.price).toFixed(2)}</div>
+
+            <!-- Button that adds the product to the cart -->
+            <button onclick="addToCart(${p.id})">Add to Cart</button>
+          </div>
+        `;
+      });
+    })
+    .catch(error => console.error("Error loading products:", error));
+
+  // Sends a POST request to add a product to the cart
+  function addToCart(id) {
+    fetch("http://localhost:3000/api/cart/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+
+      // Sends the product ID to the backend
+      body: JSON.stringify({ product_id: id })
+    })
+    .then(res => res.json())
+    .then(data => alert("Added to cart!")); // Simple confirmation message
+  }
+</script>
+
+</body>
+</html>
