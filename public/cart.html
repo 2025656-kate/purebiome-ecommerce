@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Biome - Your Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Pure Biome</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Your Cart</h2>
+
+    <!-- Table where cart items will appear -->
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody id="cart-items">
+            <!-- Items will be added here by JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- Total price -->
+    <p id="cart-total"><strong>Total:</strong> €0.00</p>
+
+</div>
+
+<script>
+    // This function loads the cart from the backend
+    function loadCart() {
+        fetch("http://localhost:3000/api/cart")
+            .then(res => res.json())
+            .then(items => {
+                const table = document.getElementById("cart-items");
+                const totalElement = document.getElementById("cart-total");
+
+                table.innerHTML = ""; // Clear table before adding items
+                let total = 0;
+
+                // Loop through each item in the cart
+                items.forEach(item => {
+                    const itemTotal = Number(item.price) * item.quantity;
+                    total += itemTotal;
+
+                    table.innerHTML += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>€${Number(item.price).toFixed(2)}</td>
+                            <td>${item.quantity}</td>
+                            <td>€${itemTotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+
+                // Update total price
+                totalElement.innerHTML = "<strong>Total:</strong> €" + total.toFixed(2);
+            });
+    }
+
+    // Load the cart when the page opens
+    loadCart();
+</script>
+
+</body>
+</html>
