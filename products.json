@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Pure Biome Lactose-Free Yogurt",
+    "description": "Pure Biome Lactose Free Yogurt is a delicious and creamy yogurt that is perfect for those who are lactose intolerant. Made with high-quality ingredients, this yogurt is packed with probiotics to support digestive health. It has a smooth texture and a rich flavor that will satisfy your taste buds.",
+    "price": 4.99,
+    "image": "/images/yogurt.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pure Biome Sugar-Free Apple Juice",
+    "description": "Our Pure Biome Sugar-Free Apple Juice is a refreshing and healthy beverage made from 100% natural apple juice. It is free from added sugars and artificial sweeteners, making it a great choice for those looking to reduce their sugar intake.",
+    "price": 2.45,
+    "image": "/images/apple-juice.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Pure Biome Probiotic Blend",
+    "description": "Our Pure Biome Probiotic Blend is a powerful combination of beneficial bacteria that supports digestive health and immune function. Perfect for those looking to improve their gut health and overall well-being.",
+    "price": 24.99,
+    "image": "/images/blend.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Pure Biome Probiotic Capsules",
+    "description": "Our Pure Biome Probiotic Capsules are a convenient way to support your digestive health and immune function. Each capsule contains a blend of beneficial bacteria that can help maintain a healthy gut microbiome.",
+    "price": 19.99,
+    "image": "/images/capsules.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Pure Biome Lactose-Free Cheese",
+    "description": "Our Pure Biome Lactose-Free Cheese is a delicious and creamy cheese that is perfect for those who are lactose intolerant. Made with high-quality ingredients, this cheese is packed with probiotics to support digestive health.",
+    "price": 4.99,
+    "image": "/images/cheese.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Pure Biome Sugar-Free Drink",
+    "description": "Our Pure Biome Sugar-Free Drink is a refreshing and healthy beverage made from 100% natural ingredients. It is free from added sugars and artificial sweeteners, making it a great choice for those looking to reduce their sugar intake.",
+    "price": 2.45,
+    "image": "/images/drink.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Pure Biome Probiotic Drops",
+    "description": "Our Pure Biome Probiotic Drops are a convenient way to support your digestive health and immune function. Each drop contains a blend of beneficial bacteria that can help maintain a healthy gut microbiome.",
+    "price": 14.99,
+    "image": "/images/drops.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Pure Biome Probiotic Fiber",
+    "description": "Our Pure Biome Probiotic Fiber is a convenient way to support your digestive health and immune function. Each serving contains a blend of beneficial bacteria that can help maintain a healthy gut microbiome.",
+    "price": 9.99,
+    "image": "/images/fiber.jpg"
+  }
+]
