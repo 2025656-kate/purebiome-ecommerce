@@ -37,7 +37,7 @@
   // Selects the container where product cards will be displayed
   const container = document.getElementById("products-container");
 
-  // Fetches product data from the backend API
+  // Gets product data from the backend API
   fetch("http://localhost:3000/api/products")
     .then(response => response.json()) // Converts the response to JSON
     .then(products => {
@@ -78,7 +78,7 @@
       body: JSON.stringify({ product_id: id })
     })
     .then(res => res.json())
-    .then(data => alert("Added to cart!")); // Simple confirmation message
+    .then(data => alert("Added to cart!")); // Confirmation message
   }
 </script>
 
