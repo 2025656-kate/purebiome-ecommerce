@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure Biome - Home</title>
+    <title>Pure Biome - Checkout</title>
 
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- Header with navigation -->
 <header>
     <h1>Pure Biome</h1>
 
-    <!-- Navigation bar -->
     <nav>
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
@@ -23,31 +23,38 @@
 </header>
 
 <!-- Main container -->
-<div class="container home-container">
+<div class="container">
+    <h2>Checkout</h2>
 
-    <!-- Central hero image -->
-    <img src="images/hero.jpg" alt="Pure Biome Wellness" class="hero-image">
+    <!-- Checkout form -->
+    <form class="checkout-form">
 
-    <!-- Welcome text -->
-    <h2>Welcome to Pure Biome</h2>
-    <p class="home-text">
-        Discover our selection of base probiotic and prebiotic products.
-        Pure Biome also offers personalized formulations tailored to your unique needs.
-    </p>
+        <!-- Full name -->
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
 
-    <!-- Link to official Pure Biome website -->
-    <a href="https://purebiome.com" target="_blank" class="official-link">
-        Visit the Official Pure Biome Website
-      
-       
-    </p>
-    </a>
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
+        <!-- Address -->
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <!-- Payment method -->
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment" required>
+            <option value="">Select a payment method</option>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bank-transfer">Bank Transfer</option>
+        </select>
+
+        <!-- Submit button -->
+        <button type="submit">Place Order</button>
+
+    </form>
 </div>
-
-<footer>
-    <p>&copy; 2026 Pure Biome</p>
-</footer>
 
 </body>
 </html>
