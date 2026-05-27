@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pure Biome - Your Cart</title>
+
+    <!-- Main stylesheet for layout and styling -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- Website header with navigation -->
 <header>
     <h1>Pure Biome</h1>
+
+    <!-- Navigation menu -->
     <nav>
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
         <a href="cart.html">Cart</a>
-    </nav>
+        <a href="checkout.html">Checkout</a>
+            </nav>
 </header>
 
 <div class="container">
     <h2>Your Cart</h2>
 
-    <!-- Table where cart items will appear -->
+    <!-- Table that will display all cart items -->
     <table class="cart-table">
         <thead>
             <tr>
@@ -29,21 +35,28 @@
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
+                <th>Action</th> <!-- Column for remove button -->
             </tr>
         </thead>
 
-        <tbody id="cart-items">
-            <!-- Items will be added here by JavaScript -->
-        </tbody>
+        <!-- Cart items will be inserted here dynamically -->
+        <tbody id="cart-items"></tbody>
     </table>
 
-    <!-- Total price -->
-    <p id="cart-total"><strong>Total:</strong> €0.00</p>
+    <!-- Checkout button -->
+<div class="checkout-btn-container">
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+</div>
 
+    <!-- Total price of all items -->
+    <p id="cart-total"><strong>Total:</strong> €0.00</p>
 </div>
 
 <script>
-    // This function loads the cart from the backend
+    /* 
+        Fetches all items currently in the cart from the backend
+        and updates the table with product details and totals.
+    */
     function loadCart() {
         fetch("http://localhost:3000/api/cart")
             .then(res => res.json())
@@ -51,30 +64,53 @@
                 const table = document.getElementById("cart-items");
                 const totalElement = document.getElementById("cart-total");
 
-                table.innerHTML = ""; // Clear table before adding items
+                table.innerHTML = ""; // Clear previous rows
                 let total = 0;
 
-                // Loop through each item in the cart
+                // Loop through each cart item returned by the API
                 items.forEach(item => {
                     const itemTotal = Number(item.price) * item.quantity;
                     total += itemTotal;
 
+                    // Insert a new row for each item
                     table.innerHTML += `
                         <tr>
                             <td>${item.name}</td>
                             <td>€${Number(item.price).toFixed(2)}</td>
                             <td>${item.quantity}</td>
                             <td>€${itemTotal.toFixed(2)}</td>
+
+                            <!-- Remove button triggers delete request -->
+                            <td>
+                                <button onclick="removeItem(${item.id})" class="remove-btn">
+                                    Remove
+                                </button>
+                            </td>
                         </tr>
                     `;
                 });
 
-                // Update total price
+                // Update the total price displayed
                 totalElement.innerHTML = "<strong>Total:</strong> €" + total.toFixed(2);
             });
     }
 
-    // Load the cart when the page opens
+    /*
+        Sends a DELETE request to remove a specific item from the cart.
+        After removal, the cart is reloaded to update the UI.
+    */
+    function removeItem(id) {
+        fetch(`http://localhost:3000/api/cart/remove/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert("Item removed!");
+            loadCart(); // Refresh cart after deletion
+        });
+    }
+
+    // Load cart items when the page is first opened
     loadCart();
 </script>
 
